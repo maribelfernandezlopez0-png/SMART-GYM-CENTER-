@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.M.G CENTER - SISTEMA PROFESIONAL</title>
+    <title>S.M.G CENTER - SISTEMA VIP</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -21,99 +21,108 @@
         /* MAIN CONTENT */
         .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, #110000 0%, #000 100%); }
         h2 { color: var(--accent); text-transform: uppercase; margin-bottom: 30px; border-left: 5px solid var(--accent); padding-left: 15px; }
-        
-        .glass-panel { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .glass-panel { background: var(--card); padding: 30px; border-radius: 15px; border: 1px solid #222; }
         
         /* BUSCADOR */
-        .search-box { width: 100%; padding: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 20px; font-size: 16px; }
+        .search-container { position: relative; margin-bottom: 20px; }
+        .search-box { width: 100%; padding: 15px 15px 15px 45px; background: #111; border: 1px solid #333; color: #fff; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        .search-container i { position: absolute; left: 15px; top: 18px; color: var(--accent); }
 
-        /* TABLAS */
+        /* TABLA */
         table { width: 100%; border-collapse: collapse; }
-        th { color: var(--gold); font-size: 12px; padding: 15px; border-bottom: 2px solid var(--accent); text-transform: uppercase; }
-        td { padding: 15px; border-bottom: 1px solid #222; text-align: center; }
+        th { color: var(--gold); font-size: 12px; padding: 15px; border-bottom: 2px solid var(--accent); }
+        td { padding: 15px; border-bottom: 1px solid #222; text-align: center; font-size: 14px; }
+        
+        .nombre-link { color: #fff; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .nombre-link:hover { color: var(--accent); text-shadow: 0 0 5px red; }
 
         /* FORMULARIO */
-        label { display: block; margin-bottom: 5px; color: #888; font-size: 12px; font-weight: bold; }
-        input, select { width: 100%; padding: 12px; margin-bottom: 20px; background: #000; color: #fff; border: 1px solid #333; border-radius: 8px; box-sizing: border-box; }
-        input:focus { border-color: var(--accent); outline: none; }
+        label { display: block; margin-bottom: 5px; color: #888; font-size: 11px; font-weight: bold; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; color: #fff; border: 1px solid #333; border-radius: 8px; box-sizing: border-box; }
+        .btn-add { background: var(--accent); color: #fff; border: none; padding: 15px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        .btn-add { background: var(--accent); color: #fff; border: none; padding: 15px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .btn-add:hover { transform: scale(1.02); box-shadow: 0 0 15px var(--accent); }
-
-        .status-badge { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 10px; }
         .status-vigente { background: var(--green); color: #000; }
         .status-vencido { background: var(--accent); color: #fff; }
 
-        .btn-edit { background: var(--gold); color: #000; border: none; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        /* VENTANA MODAL (INFO CLIENTE) */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-content { background: #111; border: 2px solid var(--accent); padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 25px; color: #fff; cursor: pointer; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; margin-bottom: 15px; background: #222; box-shadow: 0 0 15px var(--accent); }
 
-        /* IMPRESIÓN */
-        #ticket-print { display: none; background: #fff; color: #000; padding: 20px; font-family: 'Courier New', monospace; width: 300px; text-align: center; border: 1px solid #000; }
-        @media print { body * { visibility: hidden; } #ticket-print, #ticket-print * { visibility: visible; } #ticket-print { position: absolute; left: 0; top: 0; display: block; } }
+        #ticket-print { display: none; background: #fff; color: #000; padding: 20px; font-family: monospace; text-align: center; }
+        @media print { body * { visibility: hidden; } #ticket-print, #ticket-print * { visibility: visible; } #ticket-print { position: absolute; left: 0; top: 0; display: block; width: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div class="logo-box">
-        <i class="fa-solid fa-dumbbell"></i>
-        <div style="margin-top:10px; font-weight:bold; letter-spacing: 2px;">S.M.G CENTER</div>
-    </div>
+    <div class="logo-box"><i class="fa-solid fa-dumbbell"></i><div style="margin-top:10px; font-weight:bold;">S.M.G CENTER</div></div>
     <nav>
-        <a onclick="show('registrar')" id="n-registrar" class="active"><i class="fa fa-user-plus"></i> Registrar</a>
-        <a onclick="show('lista')" id="n-lista"><i class="fa fa-users"></i> Panel Socios</a>
+        <a onclick="show('registrar')" id="n-registrar" class="active"><i class="fa fa-user-plus"></i> REGISTRAR</a>
+        <a onclick="show('lista')" id="n-lista"><i class="fa fa-users"></i> PANEL SOCIOS</a>
     </nav>
 </div>
 
 <div class="main">
     <div id="registrar" class="section">
         <h2 id="form-title">Nuevo Registro</h2>
-        <div class="glass-panel" style="max-width: 550px;">
+        <div class="glass-panel" style="max-width: 500px;">
             <input type="hidden" id="edit-index" value="-1">
-            
-            <label>NOMBRE COMPLETO DEL SOCIO</label>
+            <label>NOMBRE COMPLETO</label>
             <input type="text" id="reg-nombre" placeholder="EJ: CRISTIAN SORIANO">
             
+            <label>URL DE LA FOTO (OPCIONAL)</label>
+            <input type="text" id="reg-foto" placeholder="https://link-de-la-foto.jpg">
+            
             <div style="display:flex; gap:15px;">
-                <div style="flex:1;">
-                    <label>FECHA DE INICIO</label>
-                    <input type="date" id="reg-inicio" onchange="calcularVencimiento()">
-                </div>
-                <div style="flex:1;">
-                    <label>PLAN ELEGIDO</label>
-                    <select id="reg-plan" onchange="calcularVencimiento()">
+                <div style="flex:1;"><label>FECHA INICIO</label><input type="date" id="reg-inicio" onchange="actualizarFechas()"></div>
+                <div style="flex:1;"><label>PLAN</label>
+                    <select id="reg-plan" onchange="actualizarFechas()">
                         <option value="SEMANAL">SEMANAL ($150)</option>
                         <option value="MENSUAL">MENSUAL ($380)</option>
                     </select>
                 </div>
             </div>
+            <label>VENCIMIENTO CALCULADO</label>
+            <input type="date" id="reg-vence" readonly style="color:var(--accent); font-weight:bold; background:#111;">
             
-            <label>VENCIMIENTO (EL SOCIO PAGA ESTE DÍA)</label>
-            <input type="date" id="reg-vence" readonly style="color:var(--accent); font-weight:bold; font-size: 18px; text-align: center; background: #111;">
-            
-            <button class="btn-add" id="btn-save" onclick="guardarSocio()">REGISTRAR E IMPRIMIR</button>
-            <button class="btn-add" id="btn-cancel" onclick="cancelarEdicion()" style="display:none; background:#333; margin-top:10px;">CANCELAR EDICIÓN</button>
+            <button class="btn-add" id="btn-save" onclick="guardarSocio()">GUARDAR E IMPRIMIR</button>
+            <button class="btn-add" id="btn-cancel" onclick="cancelarEdicion()" style="display:none; background:#333; margin-top:10px;">CANCELAR</button>
         </div>
     </div>
 
     <div id="lista" class="section" style="display:none;">
         <h2>Gestión de Socios</h2>
-        <input type="text" class="search-box" id="buscador" placeholder="🔍 Buscar socio por nombre..." onkeyup="renderSocios()">
+        <div class="search-container"><i class="fa fa-search"></i><input type="text" class="search-box" id="buscador" placeholder="Buscar por nombre..." onkeyup="renderSocios()"></div>
         <div class="glass-panel">
             <table>
-                <thead>
-                    <tr><th>Socio</th><th>Estado</th><th>Vencimiento</th><th>Acciones</th></tr>
-                </thead>
+                <thead><tr><th>Socio (Ver Info)</th><th>Estado</th><th>Vence</th><th>Acción</th></tr></thead>
                 <tbody id="lista-socios"></tbody>
             </table>
         </div>
     </div>
-
-    <div id="ticket-print"></div>
 </div>
+
+<div id="modalInfo" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal()">&times;</span>
+        <img id="m-foto" src="" class="profile-img">
+        <h2 id="m-nombre" style="margin: 10px 0; color:var(--gold);"></h2>
+        <div id="m-info" style="text-align: left; background: #000; padding: 15px; border-radius: 10px; font-size: 14px; border: 1px solid #333;">
+            </div>
+        <button class="btn-add" style="margin-top:15px;" onclick="cerrarModal()">CERRAR</button>
+    </div>
+</div>
+
+<div id="ticket-print"></div>
 
 <script>
     let socios = JSON.parse(localStorage.getItem('smg_data')) || [];
-    const audioBip = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
+    const bip = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
+    const fotoDefault = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
 
     function show(id) {
         document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
@@ -123,20 +132,13 @@
         if(id === 'lista') renderSocios();
     }
 
-    function calcularVencimiento() {
-        const inicioVal = document.getElementById('reg-inicio').value;
-        if(!inicioVal) return;
-        
-        // Usar T00:00:00 para evitar errores de zona horaria
-        const fecha = new Date(inicioVal + 'T00:00:00');
+    function actualizarFechas() {
+        const inicio = document.getElementById('reg-inicio').value;
+        if(!inicio) return;
+        const fecha = new Date(inicio + 'T00:00:00');
         const plan = document.getElementById('reg-plan').value;
-        
-        // Sumamos los días según el plan
         fecha.setDate(fecha.getDate() + (plan === 'SEMANAL' ? 7 : 30));
-        
-        // Restamos 1 día para que el vencimiento sea justo antes del pago
-        fecha.setDate(fecha.getDate() - 1);
-        
+        fecha.setDate(fecha.getDate() - 1); 
         document.getElementById('reg-vence').value = fecha.toISOString().split('T')[0];
     }
 
@@ -144,27 +146,17 @@
         const nombre = document.getElementById('reg-nombre').value.toUpperCase();
         const vence = document.getElementById('reg-vence').value;
         const index = document.getElementById('edit-index').value;
+        const foto = document.getElementById('reg-foto').value || fotoDefault;
 
-        if(!nombre || !vence) return alert("¡Por favor, completa los datos!");
+        if(!nombre || !vence) return alert("Completa los datos");
 
-        const datos = { 
-            nombre, 
-            vence, 
-            plan: document.getElementById('reg-plan').value,
-            inicio: document.getElementById('reg-inicio').value 
-        };
+        const datos = { nombre, vence, foto, plan: document.getElementById('reg-plan').value, inicio: document.getElementById('reg-inicio').value };
 
-        if(index === "-1") {
-            socios.push(datos);
-        } else {
-            socios[index] = datos;
-            cancelarEdicion();
-        }
+        if(index === "-1") socios.push(datos);
+        else { socios[index] = datos; cancelarEdicion(); }
 
         localStorage.setItem('smg_data', JSON.stringify(socios));
-        
-        // Alerta sonora y confirmación
-        audioBip.play();
+        bip.play();
         imprimirTicket(datos);
         show('lista');
     }
@@ -179,25 +171,37 @@
             if(s.nombre.includes(filtro)) {
                 const esVigente = s.vence >= hoy;
                 tbody.innerHTML += `<tr>
-                    <td style="text-align:left;"><b>${s.nombre}</b></td>
+                    <td style="text-align:left;"><a class="nombre-link" onclick="verDetalles(${i})">${s.nombre}</a></td>
                     <td><span class="status-badge ${esVigente ? 'status-vigente' : 'status-vencido'}">${esVigente ? 'VIGENTE' : 'VENCIDO'}</span></td>
-                    <td style="font-family: monospace;">${s.vence}</td>
-                    <td>
-                        <button class="btn-edit" onclick="prepararEdicion(${i})"><i class="fa fa-sync"></i> RENOVAR</button>
-                        <button onclick="eliminarSocio(${i})" style="background:none; border:none; color:#444; cursor:pointer; margin-left:10px;"><i class="fa fa-trash"></i></button>
-                    </td>
+                    <td>${s.vence}</td>
+                    <td><button class="btn-add" style="padding:5px 10px; font-size:10px;" onclick="prepararEdicion(${i})">RENOVAR</button></td>
                 </tr>`;
             }
         });
     }
 
+    function verDetalles(i) {
+        const s = socios[i];
+        document.getElementById('m-foto').src = s.foto;
+        document.getElementById('m-nombre').innerText = s.nombre;
+        document.getElementById('m-info').innerHTML = `
+            <p><b>📅 INICIO:</b> ${s.inicio || 'No registrada'}</p>
+            <p><b>⏳ VENCE:</b> ${s.vence}</p>
+            <p><b>🏆 PLAN:</b> ${s.plan}</p>
+            <p><b>💳 ESTADO:</b> PAGADO</p>
+        `;
+        document.getElementById('modalInfo').style.display = 'flex';
+    }
+
+    function cerrarModal() { document.getElementById('modalInfo').style.display = 'none'; }
+
     function prepararEdicion(i) {
         const s = socios[i];
-        document.getElementById('form-title').innerText = "Renovar / Editar Socio";
+        document.getElementById('form-title').innerText = "Renovación";
         document.getElementById('reg-nombre').value = s.nombre;
-        document.getElementById('reg-plan').value = s.plan;
+        document.getElementById('reg-foto').value = s.foto === fotoDefault ? "" : s.foto;
         document.getElementById('edit-index').value = i;
-        document.getElementById('btn-save').innerText = "GUARDAR Y REIMPRIMIR";
+        document.getElementById('btn-save').innerText = "CONFIRMAR CAMBIOS";
         document.getElementById('btn-cancel').style.display = "block";
         show('registrar');
     }
@@ -205,42 +209,18 @@
     function cancelarEdicion() {
         document.getElementById('form-title').innerText = "Nuevo Registro";
         document.getElementById('reg-nombre').value = "";
+        document.getElementById('reg-foto').value = "";
         document.getElementById('edit-index').value = "-1";
-        document.getElementById('btn-save').innerText = "REGISTRAR E IMPRIMIR";
+        document.getElementById('btn-save').innerText = "GUARDAR E IMPRIMIR";
         document.getElementById('btn-cancel').style.display = "none";
-    }
-
-    function eliminarSocio(i) {
-        if(confirm("¿Estás seguro de eliminar a este socio?")) {
-            socios.splice(i, 1);
-            localStorage.setItem('smg_data', JSON.stringify(socios));
-            renderSocios();
-        }
     }
 
     function imprimirTicket(s) {
         const t = document.getElementById('ticket-print');
-        t.innerHTML = `
-            <h2 style="margin:0;">S.M.G CENTER</h2>
-            <p>¡ENTRENA CON PASIÓN!</p>
-            <hr>
-            <div style="text-align:left;">
-                <b>SOCIO:</b> ${s.nombre}<br>
-                <b>PLAN:</b> ${s.plan}<br>
-                <b>INICIO:</b> ${s.inicio}
-            </div>
-            <hr>
-            <h3 style="background:#000; color:#fff; padding:5px;">VENCE: ${s.vence}</h3>
-            <hr>
-            <p style="font-size:10px;">Conserva este ticket.<br>No hay devoluciones.</p>
-        `;
+        t.innerHTML = `<h2>SMG CENTER</h2><hr>CLIENTE: ${s.nombre}<br>VENCE: ${s.vence}<hr>¡ENTRENA DURO!`;
         window.print();
-    }
-
-    // Registrar Service Worker para PWA
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
     }
 </script>
 </body>
 </html>
+
