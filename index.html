@@ -3,182 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.M.G CENTER - ELITE V3</title>
+    <title>S.M.G CENTER - CONTABILIDAD PASTEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --dark: #050505; --card: #0f0f0f; --accent: #ff0000; --gold: #ffcc00; --text: #ffffff; --green: #00ff44; }
-        
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            background: var(--dark); 
-            color: var(--text); 
-            display: flex; 
-            height: 100vh; 
-            overflow: hidden; 
+        :root { 
+            --bg: #f4f7f6; 
+            --sidebar-bg: #ffffff;
+            --card: #ffffff; 
+            --accent: #ffb7b2; /* Rosa Pastel */
+            --secondary: #b2e2f2; /* Azul Pastel */
+            --success: #b2f2bb; /* Verde Pastel */
+            --text: #4a4a4a;
+            --muted: #888;
         }
+        
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
 
         /* SIDEBAR */
-        .sidebar { width: 260px; background: #000; border-right: 2px solid var(--accent); display: flex; flex-direction: column; z-index: 10; }
-        .logo-box { padding: 40px 20px; text-align: center; border-bottom: 1px solid #222; }
-        .logo-box i { font-size: 50px; color: var(--accent); filter: drop-shadow(0 0 10px red); }
-        .sidebar nav a { display: flex; align-items: center; padding: 18px 25px; color: #888; text-decoration: none; font-size: 13px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .sidebar nav a:hover, .sidebar nav a.active { background: #111; color: #fff; border-left: 5px solid var(--accent); }
-        .sidebar nav a i { margin-right: 15px; width: 20px; text-align: center; }
-
-        /* MAIN CENTRADO */
-        .main { 
-            flex: 1; 
-            padding: 40px; 
-            overflow-y: auto; 
-            background: radial-gradient(circle at center, #1a0000 0%, #000 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra todo el contenido */
+        .sidebar { width: 260px; background: var(--sidebar-bg); border-right: 1px solid #eee; display: flex; flex-direction: column; }
+        .logo-box { padding: 30px; text-align: center; border-bottom: 1px solid #f5f5f5; }
+        .logo-box i { font-size: 40px; color: var(--accent); margin-bottom: 10px; }
+        .sidebar nav a { 
+            display: flex; align-items: center; padding: 15px 25px; color: var(--muted); 
+            text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s;
         }
+        .sidebar nav a:hover, .sidebar nav a.active { background: #fffafa; color: var(--accent); border-right: 4px solid var(--accent); }
+        .sidebar nav a i { margin-right: 15px; width: 20px; }
 
-        .container-wide { width: 100%; max-width: 900px; }
-        .section { width: 100%; display: none; flex-direction: column; align-items: center; }
+        /* MAIN */
+        .main { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 100%; max-width: 950px; }
+        .section { display: none; flex-direction: column; width: 100%; }
 
-        h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; text-align: center; }
+        h2 { font-weight: 700; color: var(--text); margin-bottom: 25px; text-align: center; }
 
-        /* PANELES */
-        .glass-panel { 
-            background: var(--card); 
-            padding: 30px; 
-            border-radius: 20px; 
-            border: 1px solid #222; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
-            width: 100%;
-            box-sizing: border-box;
-        }
+        /* CARDS */
+        .glass-panel { background: var(--card); padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); border: 1px solid #fff; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; width: 100%; }
+        .stat-card { background: white; padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .stat-card h3 { margin: 5px 0; font-size: 20px; color: var(--text); }
+        .stat-card p { margin: 0; font-size: 10px; color: var(--muted); text-transform: uppercase; }
 
-        /* DASHBOARD */
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-bottom: 30px; }
-        .stat-card { background: #000; padding: 20px; border-radius: 15px; border: 1px solid #222; text-align: center; }
-        .stat-card h3 { margin: 5px 0; font-size: 32px; color: var(--gold); }
-        .stat-card p { margin: 0; font-size: 11px; color: #888; letter-spacing: 1px; }
-
-        /* FORMULARIOS */
-        .form-group { margin-bottom: 20px; width: 100%; }
-        label { display: block; margin-bottom: 8px; font-size: 12px; color: var(--gold); font-weight: bold; }
-        input, select { 
-            width: 100%; padding: 15px; background: #000; border: 1px solid #333; 
-            color: #fff; border-radius: 10px; font-size: 16px; box-sizing: border-box; 
-        }
+        /* FORMS */
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-group { flex: 1; display: flex; flex-direction: column; }
+        label { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; }
+        input, select { padding: 12px; background: #fdfdfd; border: 1px solid #eee; border-radius: 10px; font-family: inherit; font-size: 14px; }
         input:focus { border-color: var(--accent); outline: none; }
 
-        .btn-main { 
-            background: var(--accent); color: white; border: none; padding: 18px; 
-            border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; 
-            text-transform: uppercase; font-size: 16px; transition: 0.3s;
-        }
-        .btn-main:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(255,0,0,0.4); }
+        .btn-main { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; font-size: 14px; margin-top: 10px; }
 
-        /* TABLA */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th { color: #555; font-size: 11px; padding: 15px; text-transform: uppercase; border-bottom: 1px solid #222; }
-        td { padding: 15px; border-bottom: 1px solid #111; text-align: center; }
-        
-        .row-name { font-weight: bold; color: #fff; cursor: pointer; }
-        .row-name:hover { color: var(--gold); }
+        /* TABLE */
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; }
+        th { background: #fafafa; padding: 15px; font-size: 11px; color: var(--muted); text-transform: uppercase; }
+        td { padding: 15px; text-align: center; border-bottom: 1px solid #f9f9f9; font-size: 13px; }
+        .row-name { font-weight: 600; cursor: pointer; color: #555; }
+        .row-name:hover { color: var(--accent); }
 
-        /* BADGES */
-        .badge { padding: 5px 12px; border-radius: 5px; font-size: 10px; font-weight: bold; }
-        .bg-vigente { background: var(--green); color: #000; }
-        .bg-vencido { background: var(--accent); color: #fff; }
+        .badge { padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: bold; }
+        .bg-v { background: var(--success); color: #3d5a42; }
+        .bg-x { background: var(--accent); color: #fff; }
 
-        /* FICHA CLIENTE (MODAL) */
-        .modal { 
-            display: none; position: fixed; top:0; left:0; width:100%; height:100%; 
-            background: rgba(0,0,0,0.9); z-index: 100; align-items: center; justify-content: center; 
-        }
-        .ficha-card { 
-            background: #111; border: 2px solid var(--accent); border-radius: 25px; 
-            padding: 40px; width: 90%; max-width: 400px; text-align: center; position: relative;
-        }
-        .ficha-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; margin-bottom: 20px; background: #222; }
-        .ficha-info { background: #000; padding: 20px; border-radius: 15px; text-align: left; }
-        .ficha-line { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        /* FICHA */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.9); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .ficha-card { background: white; padding: 30px; border-radius: 25px; width: 90%; max-width: 380px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; }
+        .ficha-img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--secondary); object-fit: cover; margin-bottom: 15px; }
+        .info-box { background: #fcfcfc; border-radius: 15px; padding: 15px; text-align: left; font-size: 13px; border: 1px solid #f5f5f5; }
+        .info-line { display: flex; justify-content: space-between; margin-bottom: 6px; }
 
         /* TICKET */
-        #ticket-print { 
-            display: none; width: 300px; padding: 30px; background: #fff; color: #000; 
-            font-family: 'Courier New', monospace; text-align: center; border: 2px solid #000; 
-        }
-        .ticket-logo { font-size: 24px; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 10px; }
-
+        #ticket-print { display: none; width: 280px; padding: 20px; font-family: monospace; text-align: center; border: 1px solid #000; background: #fff; color: #000; }
         @media print { body * { visibility: hidden; } #ticket-print, #ticket-print * { visibility: visible; } #ticket-print { position: absolute; left: 0; top: 0; display: block; } }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div class="logo-box"><i class="fa-solid fa-dumbbell"></i><div style="margin-top:10px; font-weight:bold; letter-spacing:2px;">S.M.G CENTER</div></div>
+    <div class="logo-box"><i class="fa-solid fa-dumbbell"></i><div style="font-weight:bold; font-size:18px;">SMG CENTER</div></div>
     <nav>
-        <a onclick="show('registrar')" id="n-registrar" class="active"><i class="fa fa-user-plus"></i> REGISTRAR</a>
-        <a onclick="show('lista')" id="n-lista"><i class="fa fa-users"></i> SOCIOS</a>
-        <a onclick="show('historial')" id="n-historial"><i class="fa fa-history"></i> HISTORIAL</a>
+        <a onclick="show('registrar')" id="n-registrar" class="active"><i class="fa fa-plus"></i> REGISTRO</a>
+        <a onclick="show('lista')" id="n-lista"><i class="fa fa-users"></i> CLIENTES</a>
+        <a onclick="show('caja')" id="n-caja"><i class="fa fa-wallet"></i> CAJA DIARIA</a>
     </nav>
 </div>
 
 <div class="main">
-    <div class="container-wide">
+    <div class="container">
         
-        <div id="registrar" class="section" style="display: flex;">
-            <h2>Nuevo Registro</h2>
-            <div class="glass-panel" style="max-width: 550px; margin: 0 auto;">
+        <div id="registrar" class="section" style="display:flex;">
+            <h2>Nueva Membresía</h2>
+            <div class="glass-panel" style="max-width: 500px; margin: 0 auto;">
                 <input type="hidden" id="edit-index" value="-1">
-                <div class="form-group">
-                    <label>NOMBRE DEL CLIENTE</label>
-                    <input type="text" id="reg-nombre" placeholder="P. EJ. JUAN PÉREZ">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label>Nombre del Cliente</label>
+                    <input type="text" id="reg-nombre" placeholder="Nombre Completo">
                 </div>
-                <div class="form-group">
-                    <label>LINK DE FOTO (OPCIONAL)</label>
-                    <input type="text" id="reg-foto" placeholder="https://imagen.com/foto.jpg">
-                </div>
-                <div style="display:flex; gap:20px;">
-                    <div class="form-group" style="flex:1;">
-                        <label>FECHA INICIO</label>
-                        <input type="date" id="reg-inicio" onchange="calcularVencimiento()">
-                    </div>
-                    <div class="form-group" style="flex:1;">
-                        <label>PLAN</label>
-                        <select id="reg-plan" onchange="calcularVencimiento()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Plan</label>
+                        <select id="reg-plan" onchange="calcMoney(); calcDates();">
                             <option value="SEMANAL">SEMANAL ($150)</option>
                             <option value="MENSUAL">MENSUAL ($380)</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Fecha Inicio</label>
+                        <input type="date" id="reg-inicio" onchange="calcDates()">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label style="color:var(--accent)">VENCIMIENTO AUTOMÁTICO</label>
-                    <input type="date" id="reg-vence" readonly style="border-color:var(--accent); color:var(--accent); font-weight:bold;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Abono ($)</label>
+                        <input type="number" id="reg-pago" onkeyup="calcMoney()">
+                    </div>
+                    <div class="form-group">
+                        <label>Método</label>
+                        <select id="reg-metodo">
+                            <option value="EFECTIVO">EFECTIVO</option>
+                            <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                        </select>
+                    </div>
                 </div>
-                <button class="btn-main" onclick="guardarSocio()">REGISTRAR E IMPRIMIR</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Resta</label>
+                        <input type="text" id="reg-resta" readonly style="background:#fffafa; color:var(--accent); font-weight:bold;">
+                    </div>
+                    <div class="form-group">
+                        <label>Vencimiento</label>
+                        <input type="date" id="reg-vence" readonly>
+                    </div>
+                </div>
+                <button class="btn-main" onclick="guardarSocio()">GUARDAR E IMPRIMIR RECIBO</button>
             </div>
         </div>
 
         <div id="lista" class="section">
             <div class="stats-grid">
-                <div class="stat-card"><p>TOTAL</p><h3 id="st-total">0</h3></div>
-                <div class="stat-card"><p>ACTIVOS</p><h3 id="st-activos" style="color:var(--green)">0</h3></div>
-                <div class="stat-card"><p>VENCIDOS</p><h3 id="st-vencidos" style="color:var(--accent)">0</h3></div>
+                <div class="stat-card"><p>Socios</p><h3 id="st-total">0</h3></div>
+                <div class="stat-card"><p>Vigentes</p><h3 id="st-v" style="color:var(--success)">0</h3></div>
+                <div class="stat-card"><p>Con Deuda</p><h3 id="st-d" style="color:var(--accent)">0</h3></div>
             </div>
-            <input type="text" class="search-box" id="buscador" placeholder="🔍 Buscar socio por nombre..." onkeyup="renderSocios()">
+            <input type="text" id="buscador" onkeyup="renderSocios()" placeholder="🔍 Buscar por nombre..." style="width:100%; padding:15px; border-radius:12px; border:1px solid #eee; margin-bottom:20px; outline:none;">
             <div class="glass-panel">
                 <table>
-                    <thead><tr><th>NOMBRE</th><th>ESTADO</th><th>VENCIMIENTO</th><th>ACCIONES</th></tr></thead>
+                    <thead><tr><th>NOMBRE</th><th>ESTADO</th><th>RESTA</th><th>VENCE</th><th>MÉTODO</th><th>ACCIONES</th></tr></thead>
                     <tbody id="lista-socios"></tbody>
                 </table>
             </div>
         </div>
 
-        <div id="historial" class="section">
-            <h2>Historial de Pagos</h2>
+        <div id="caja" class="section">
+            <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="stat-card"><p>Efectivo</p><h3 id="cj-efectivo" style="color:var(--success)">$0</h3></div>
+                <div class="stat-card"><p>Transferencias</p><h3 id="cj-trans" style="color:var(--secondary)">$0</h3></div>
+            </div>
             <div class="glass-panel">
                 <table>
-                    <thead><tr><th>FECHA</th><th>SOCIO</th><th>PLAN</th><th>MONTO</th></tr></thead>
-                    <tbody id="lista-historial"></tbody>
+                    <thead><tr><th>FECHA</th><th>SOCIO</th><th>MÉTODO</th><th>MONTO</th></tr></thead>
+                    <tbody id="lista-caja"></tbody>
                 </table>
             </div>
         </div>
@@ -188,38 +173,37 @@
 
 <div id="modalFicha" class="modal">
     <div class="ficha-card">
-        <span style="position:absolute; right:25px; top:15px; cursor:pointer; font-size:30px;" onclick="cerrarFicha()">&times;</span>
-        <img id="f-img" src="" class="ficha-img">
-        <h2 id="f-nombre" style="border:none; margin-bottom:10px;"></h2>
-        <div class="ficha-info">
-            <div class="ficha-line"><span>Estado:</span><b id="f-estado"></b></div>
-            <div class="ficha-line"><span>Plan:</span><span id="f-plan"></span></div>
-            <div class="ficha-line"><span>Inicio:</span><span id="f-inicio"></span></div>
-            <div class="ficha-line"><span>Vencimiento:</span><b id="f-vence" style="color:var(--accent)"></b></div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="ficha-img">
+        <h3 id="f-nombre" style="margin:0;"></h3>
+        <p id="f-plan" style="font-size:12px; color:var(--muted); margin-bottom:15px;"></p>
+        <div class="info-box">
+            <div class="info-line"><span>Vence:</span><b id="f-vence"></b></div>
+            <div class="info-line"><span>Último Pago:</span><span id="f-pago"></span></div>
+            <div class="info-line"><span>Método:</span><b id="f-metodo"></b></div>
+            <hr style="border:0; border-top:1px solid #eee; margin:8px 0;">
+            <div class="info-line"><span>Deuda Actual:</span><b id="f-resta" style="color:var(--accent)"></b></div>
         </div>
-        <button class="btn-main" style="margin-top:20px; background:#222;" onclick="cerrarFicha()">CERRAR FICHA</button>
+        <button class="btn-main" style="background:#f5f5f5; color:#888; margin-top:15px;" onclick="cerrarFicha()">CERRAR</button>
     </div>
 </div>
 
 <div id="ticket-print">
-    <div class="ticket-logo">S.M.G CENTER</div>
-    <p>RECIBO DE PAGO OFICIAL</p>
-    <div style="text-align:left; margin: 20px 0; line-height: 1.8;">
-        <b>SOCIO:</b> <span id="t-nombre"></span><br>
-        <b>PLAN:</b> <span id="t-plan"></span><br>
-        <b>FECHA INICIO:</b> <span id="t-inicio"></span><br>
+    <h3>SMG CENTER</h3>
+    <p>RECIBO DE PAGO</p>
+    <hr>
+    <div style="text-align:left; font-size:13px;">
+        Socio: <b id="t-nombre"></b><br>
+        Plan: <span id="t-plan"></span><br>
+        Pago: <b id="t-pago"></b> (<span id="t-metodo"></span>)<br>
+        Deuda: <span id="t-resta"></span><br>
         <hr>
-        <b style="font-size:18px;">VENCE: <span id="t-vence"></span></b>
-        <hr>
+        <h4 style="text-align:center;">VENCIMIENTO: <span id="t-vence"></span></h4>
     </div>
-    <p>¡Gracias por tu pago!<br>PROHIBIDO RENDIRSE</p>
 </div>
 
 <script>
-    let socios = JSON.parse(localStorage.getItem('smg_socios')) || [];
-    let pagos = JSON.parse(localStorage.getItem('smg_pagos')) || [];
-    const sonido = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
-    const IMG_DEFAULT = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+    let socios = JSON.parse(localStorage.getItem('smg_v4_socios')) || [];
+    let caja = JSON.parse(localStorage.getItem('smg_v4_caja')) || [];
 
     function show(id) {
         document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
@@ -227,90 +211,101 @@
         document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
         document.getElementById('n-'+id).classList.add('active');
         if(id==='lista') renderSocios();
-        if(id==='historial') renderHistorial();
+        if(id==='caja') renderCaja();
     }
 
-    function calcularVencimiento() {
+    function calcMoney() {
+        const total = document.getElementById('reg-plan').value === 'SEMANAL' ? 150 : 380;
+        const abono = parseFloat(document.getElementById('reg-pago').value) || 0;
+        document.getElementById('reg-resta').value = (total - abono).toFixed(2);
+    }
+
+    function calcDates() {
         const inicio = document.getElementById('reg-inicio').value;
         if(!inicio) return;
-        const fecha = new Date(inicio + 'T00:00:00');
+        let d = new Date(inicio + 'T00:00:00');
         const plan = document.getElementById('reg-plan').value;
-        
-        // Sumar 7 o 30 días y restar 1
-        fecha.setDate(fecha.getDate() + (plan === 'SEMANAL' ? 7 : 30));
-        fecha.setDate(fecha.getDate() - 1);
-        
-        document.getElementById('reg-vence').value = fecha.toISOString().split('T')[0];
+        d.setDate(d.getDate() + (plan === 'SEMANAL' ? 7 : 30));
+        d.setDate(d.getDate() - 1);
+        document.getElementById('reg-vence').value = d.toISOString().split('T')[0];
     }
 
     function guardarSocio() {
-        const nombre = document.getElementById('reg-nombre').value.toUpperCase();
-        const inicio = document.getElementById('reg-inicio').value;
-        const vence = document.getElementById('reg-vence').value;
+        const n = document.getElementById('reg-nombre').value.toUpperCase();
+        const p = document.getElementById('reg-pago').value;
+        const r = document.getElementById('reg-resta').value;
+        const v = document.getElementById('reg-vence').value;
+        const m = document.getElementById('reg-metodo').value;
         const plan = document.getElementById('reg-plan').value;
-        const foto = document.getElementById('reg-foto').value || IMG_DEFAULT;
-        const editIdx = document.getElementById('edit-index').value;
+        const ini = document.getElementById('reg-inicio').value;
+        const idx = document.getElementById('edit-index').value;
 
-        if(!nombre || !inicio) return alert("Llena los campos obligatorios");
+        if(!n || !ini || !p) return alert("Completa los datos");
 
-        const datos = { nombre, inicio, vence, plan, foto };
+        const data = { nombre: n, pago: p, resta: r, vence: v, metodo: m, plan, inicio: ini };
 
-        if(editIdx === "-1") {
-            socios.push(datos);
-        } else {
-            socios[editIdx] = datos;
-            document.getElementById('edit-index').value = "-1";
-        }
+        if(idx === "-1") socios.push(data);
+        else { socios[idx] = data; document.getElementById('edit-index').value = "-1"; }
 
-        // Historial
-        pagos.unshift({ fecha: new Date().toLocaleDateString(), nombre, plan, monto: plan==='SEMANAL'?'$150':'$380' });
+        caja.unshift({ fecha: new Date().toLocaleDateString(), socio: n, monto: p, metodo: m });
         
-        localStorage.setItem('smg_socios', JSON.stringify(socios));
-        localStorage.setItem('smg_pagos', JSON.stringify(pagos));
+        localStorage.setItem('smg_v4_socios', JSON.stringify(socios));
+        localStorage.setItem('smg_v4_caja', JSON.stringify(caja));
         
-        sonido.play();
-        imprimir(datos);
+        imprimirTicket(data);
         show('lista');
     }
 
     function renderSocios() {
         const tbody = document.getElementById('lista-socios');
-        const filtro = document.getElementById('buscador').value.toUpperCase();
+        const search = document.getElementById('buscador').value.toUpperCase();
         const hoy = new Date().toISOString().split('T')[0];
         tbody.innerHTML = '';
         
-        let a=0, v=0;
+        let t=0, v=0, d=0;
         socios.forEach((s, i) => {
-            const vigente = s.vence >= hoy;
-            if(vigente) a++; else v++;
+            if(s.nombre.includes(search)) {
+                const isV = s.vence >= hoy;
+                const hasD = parseFloat(s.resta) > 0;
+                t++; if(isV) v++; if(hasD) d++;
 
-            if(s.nombre.includes(filtro)) {
                 tbody.innerHTML += `<tr>
                     <td class="row-name" onclick="verFicha(${i})">${s.nombre}</td>
-                    <td><span class="badge ${vigente?'bg-vigente':'bg-vencido'}">${vigente?'VIGENTE':'VENCIDO'}</span></td>
+                    <td><span class="badge ${isV?'bg-v':'bg-x'}">${isV?'VIGENTE':'VENCIDO'}</span></td>
+                    <td style="color:${hasD?'var(--accent)':'#ccc'}">$${s.resta}</td>
                     <td>${s.vence}</td>
+                    <td style="font-size:9px; color:#aaa">${s.metodo}</td>
                     <td>
-                        <button onclick="editar(${i})" style="background:none; border:1px solid #444; color:#fff; cursor:pointer; padding:5px; border-radius:5px;">RENOVAR</button>
-                        <button onclick="borrar(${i})" style="background:none; border:none; color:red; cursor:pointer; margin-left:10px;"><i class="fa fa-trash"></i></button>
+                        <button onclick="editar(${i})" style="border:none; background:none; color:var(--secondary); cursor:pointer;"><i class="fa fa-refresh"></i></button>
+                        <button onclick="borrar(${i})" style="border:none; background:none; color:#eee; cursor:pointer; margin-left:10px;"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>`;
             }
         });
-        document.getElementById('st-total').innerText = socios.length;
-        document.getElementById('st-activos').innerText = a;
-        document.getElementById('st-vencidos').innerText = v;
+        document.getElementById('st-total').innerText = t;
+        document.getElementById('st-v').innerText = v;
+        document.getElementById('st-d').innerText = d;
+    }
+
+    function renderCaja() {
+        let efec = 0, trans = 0;
+        document.getElementById('lista-caja').innerHTML = caja.map(c => {
+            if(c.metodo === 'EFECTIVO') efec += parseFloat(c.monto);
+            else trans += parseFloat(c.monto);
+            return `<tr><td>${c.fecha}</td><td>${c.socio}</td><td>${c.metodo}</td><td>$${c.monto}</td></tr>`;
+        }).join('');
+        document.getElementById('cj-efectivo').innerText = "$" + efec.toFixed(2);
+        document.getElementById('cj-trans').innerText = "$" + trans.toFixed(2);
     }
 
     function verFicha(i) {
         const s = socios[i];
-        const hoy = new Date().toISOString().split('T')[0];
-        document.getElementById('f-img').src = s.foto;
         document.getElementById('f-nombre').innerText = s.nombre;
-        document.getElementById('f-plan').innerText = s.plan;
-        document.getElementById('f-inicio').innerText = s.inicio;
+        document.getElementById('f-plan').innerText = s.plan + " - INICIO: " + s.inicio;
         document.getElementById('f-vence').innerText = s.vence;
-        document.getElementById('f-estado').innerText = s.vence >= hoy ? "ACTIVO" : "VENCIDO";
-        document.getElementById('f-estado').style.color = s.vence >= hoy ? "var(--green)" : "var(--accent)";
+        document.getElementById('f-pago').innerText = "$" + s.pago;
+        document.getElementById('f-resta').innerText = "$" + s.resta;
+        document.getElementById('f-metodo').innerText = s.metodo;
         document.getElementById('modalFicha').style.display = 'flex';
     }
 
@@ -319,33 +314,26 @@
     function editar(i) {
         const s = socios[i];
         document.getElementById('reg-nombre').value = s.nombre;
-        document.getElementById('reg-foto').value = s.foto === IMG_DEFAULT ? "" : s.foto;
         document.getElementById('edit-index').value = i;
         show('registrar');
     }
 
     function borrar(i) {
-        if(confirm("¿Eliminar socio definitivamente?")) {
-            socios.splice(i, 1);
-            localStorage.setItem('smg_socios', JSON.stringify(socios));
-            renderSocios();
-        }
+        if(confirm("¿Eliminar?")) { socios.splice(i,1); localStorage.setItem('smg_v4_socios', JSON.stringify(socios)); renderSocios(); }
     }
 
-    function renderHistorial() {
-        document.getElementById('lista-historial').innerHTML = pagos.map(p => `<tr><td>${p.fecha}</td><td>${p.nombre}</td><td>${p.plan}</td><td>${p.monto}</td></tr>`).join('');
-    }
-
-    function imprimir(s) {
+    function imprimirTicket(s) {
         document.getElementById('t-nombre').innerText = s.nombre;
-        document.getElementById('t-plan').innerText = s.plan;
-        document.getElementById('t-inicio').innerText = s.inicio;
+        document.getElementById('t-pago').innerText = "$" + s.pago;
+        document.getElementById('t-metodo').innerText = s.metodo;
+        document.getElementById('t-resta').innerText = "$" + s.resta;
         document.getElementById('t-vence').innerText = s.vence;
+        document.getElementById('t-plan').innerText = s.plan;
         window.print();
     }
+
+    document.getElementById('reg-pago').value = 150; // default
+    calcMoney();
 </script>
 </body>
 </html>
-
-
-
