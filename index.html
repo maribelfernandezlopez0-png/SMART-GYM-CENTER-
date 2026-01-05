@@ -2,343 +2,272 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.M.G CENTER - ELITE SYSTEM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>S.M.G CENTER | VIP APP</title>
+    
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SMG VIP">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-dark: #0a0a0a;
-            --panel-bg: #111111;
-            --accent-red: #ff0000;
-            --text-gray: #e0e0e0;
-            --pastel-green: #b2f2bb;
-            --pastel-red: #ffb7b2;
-            --pastel-blue: #b2e2f2;
-            --pastel-orange: #ffdfba;
-            --border-color: #222;
+            --primary: #ff0000;
+            --primary-soft: #ffb7b2;
+            --bg: #050505;
+            --panel: #121212;
+            --success: #b2f2bb;
+            --info: #b2e2f2;
+            --gold: #f1c40f;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
         }
 
-        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body { margin: 0; background-color: var(--bg-dark); color: var(--text-gray); display: flex; height: 100vh; overflow: hidden; }
-
-        /* SIDEBAR (ESTRUCTURA DE IMAGEN) */
-        .sidebar { width: 240px; background: black; border-right: 2px solid var(--accent-red); display: flex; flex-direction: column; padding: 20px 0; }
-        .logo-area { text-align: center; padding-bottom: 30px; }
-        .logo-area i { font-size: 50px; color: var(--accent-red); filter: drop-shadow(0 0 10px rgba(255,0,0,0.5)); }
-        .logo-area h1 { font-size: 18px; margin-top: 10px; letter-spacing: 1px; }
-
-        .nav-menu { flex: 1; }
-        .nav-item { 
-            display: flex; align-items: center; padding: 15px 25px; color: #888; 
-            text-decoration: none; font-size: 13px; font-weight: bold; cursor: pointer; border-left: 4px solid transparent;
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            margin: 0; font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); color: var(--text); 
+            display: flex; height: 100vh; overflow: hidden; 
         }
-        .nav-item:hover, .nav-item.active { color: white; background: #111; border-left: 4px solid var(--accent-red); }
-        .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
 
-        /* MAIN CONTENT */
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .header-title { color: var(--accent-red); font-size: 24px; font-weight: bold; margin-bottom: 30px; border-left: 5px solid var(--accent-red); padding-left: 15px; text-transform: uppercase; }
-
-        /* CARDS & PANELS */
-        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .stat-card { background: var(--panel-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; }
-        .stat-card h3 { margin: 5px 0; font-size: 24px; }
-        .stat-card p { margin: 0; font-size: 11px; color: #666; text-transform: uppercase; }
-
-        .glass-panel { background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-        /* FORMS */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .field { display: flex; flex-direction: column; margin-bottom: 15px; }
-        label { font-size: 12px; color: #888; margin-bottom: 8px; text-transform: uppercase; }
-        input, select { 
-            background: #1a1a1a; border: 1px solid #333; padding: 12px; color: white; 
-            border-radius: 5px; outline: none; transition: 0.3s;
+        /* SIDEBAR / NAVEGACIÓN INFERIOR EN MÓVIL */
+        .sidebar { 
+            width: 260px; background: #000; border-right: 2px solid var(--primary); 
+            display: flex; flex-direction: column; 
         }
-        input:focus { border-color: var(--accent-red); }
-        .btn-action { 
-            grid-column: span 2; background: var(--accent-red); color: white; border: none; 
-            padding: 15px; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; text-transform: uppercase;
-        }
-        .btn-action:hover { background: #cc0000; }
 
-        /* TABLES (DISEÑO DE IMAGEN) */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th { color: #f1c40f; font-size: 12px; padding: 15px; border-bottom: 2px solid var(--accent-red); text-transform: uppercase; }
-        td { padding: 15px; text-align: center; border-bottom: 1px solid #222; font-size: 14px; }
+        .brand { padding: 30px 10px; text-align: center; border-bottom: 1px solid #222; }
+        .brand i { font-size: 40px; color: var(--primary); filter: drop-shadow(0 0 10px var(--primary)); }
+        .brand h2 { font-size: 14px; margin-top: 10px; font-family: 'Orbitron'; letter-spacing: 1px; }
+
+        .menu { flex: 1; padding: 10px 0; }
+        .menu-item { 
+            padding: 15px 25px; display: flex; align-items: center; 
+            color: var(--text-dim); text-decoration: none; font-weight: 600; 
+            font-size: 13px; cursor: pointer; border-left: 4px solid transparent;
+        }
+        .menu-item i { margin-right: 12px; font-size: 18px; }
+        .menu-item.active { background: #1a0000; color: #fff; border-left: 4px solid var(--primary); }
+
+        /* VISTA PRINCIPAL */
+        .viewport { flex: 1; padding: 25px; overflow-y: auto; background: radial-gradient(circle at top right, #1a0000, #050505); }
+        .section { display: none; max-width: 900px; margin: 0 auto; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* CARDS Y FORMS */
+        .glass-panel { background: var(--panel); padding: 25px; border-radius: 15px; border: 1px solid #333; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .group { display: flex; flex-direction: column; margin-bottom: 10px; }
+        label { font-size: 10px; font-weight: 700; color: var(--primary-soft); margin-bottom: 5px; text-transform: uppercase; }
+        input, select { padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 14px; outline: none; }
         
-        .badge { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; }
-        .bg-vigente { background: var(--pastel-green); color: #1e3a20; }
-        .bg-vencido { background: var(--pastel-red); color: #4a1a1a; }
-        
-        .btn-delete { color: var(--accent-red); background: none; border: none; cursor: pointer; font-size: 18px; }
+        .btn-vip { 
+            background: var(--primary); color: white; border: none; padding: 15px; 
+            border-radius: 10px; font-weight: 800; font-family: 'Orbitron'; cursor: pointer; 
+            width: 100%; margin-top: 10px; letter-spacing: 1px;
+        }
+
+        /* TABLAS MÓVILES */
+        .table-container { background: var(--panel); border-radius: 15px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 500px; }
+        th { background: #000; padding: 15px; color: var(--gold); font-size: 11px; text-transform: uppercase; }
+        td { padding: 15px; text-align: center; border-bottom: 1px solid #1a1a1a; font-size: 13px; }
+
+        .badge { padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: 800; }
+        .status-v { background: var(--success); color: #052c05; }
+        .status-x { background: var(--primary); color: #fff; }
+
+        /* RESPONSIVE MÓVIL */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: 70px; border-right: none; border-top: 2px solid var(--primary); order: 2; position: fixed; bottom: 0; }
+            .brand { display: none; }
+            .menu { display: flex; justify-content: space-around; padding: 0; }
+            .menu-item { flex-direction: column; padding: 10px; font-size: 9px; border-left: none; border-top: 3px solid transparent; }
+            .menu-item i { margin: 0 0 5px 0; font-size: 20px; }
+            .menu-item.active { border-left: none; border-top: 3px solid var(--primary); background: none; }
+            .viewport { padding: 15px; padding-bottom: 90px; order: 1; }
+            .form-row { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
+        }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .stat-box { background: var(--panel); padding: 15px; border-radius: 12px; border: 1px solid #222; text-align: center; }
+        .stat-box h4 { margin: 0; font-size: 9px; color: var(--text-dim); }
+        .stat-box h2 { margin: 5px 0 0; font-size: 20px; font-family: 'Orbitron'; }
 
         /* MODAL */
-        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
-        .ficha { background: var(--panel-bg); width: 350px; padding: 30px; border-radius: 10px; border-top: 5px solid var(--accent-red); text-align: center; }
-
-        /* TICKET */
-        #ticket-print { display: none; width: 280px; padding: 20px; background: white; color: black; font-family: monospace; text-align: center; }
-        @media print { body * { visibility: hidden; } #ticket-print, #ticket-print * { visibility: visible; } #ticket-print { position: absolute; left:0; top:0; display: block; } }
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .ficha-vip { background: #111; width: 100%; max-width: 350px; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); text-align: center; }
+        
+        #print-zone { display: none; text-align: center; color: black; font-family: monospace; }
+        @media print { body * { visibility: hidden; } #print-zone, #print-zone * { visibility: visible; } #print-zone { display: block; position: absolute; top:0; left:0; width:100%; } }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div class="logo-area">
-        <i class="fa-solid fa-dumbbell"></i>
-        <h1>S.M.G CENTER</h1>
-    </div>
-    <div class="nav-menu">
-        <div class="nav-item active" onclick="showSection('reg-sec')"><i class="fa fa-user-plus"></i> REGISTRAR</div>
-        <div class="nav-item" onclick="showSection('list-sec')"><i class="fa fa-users"></i> SOCIOS</div>
-        <div class="nav-item" onclick="showSection('caja-sec')"><i class="fa fa-wallet"></i> HISTORIAL / CAJA</div>
+    <div class="brand"><i class="fa-solid fa-dumbbell"></i><h2>SMG CENTER</h2></div>
+    <div class="menu">
+        <div class="menu-item active" onclick="nav('sec-reg', this)"><i class="fa-solid fa-plus"></i> NUEVO</div>
+        <div class="menu-item" onclick="nav('sec-soc', this)"><i class="fa-solid fa-users"></i> SOCIOS</div>
+        <div class="menu-item" onclick="nav('sec-caj', this)"><i class="fa-solid fa-cash-register"></i> CAJA</div>
     </div>
 </div>
 
-<div class="main-content">
+<div class="viewport">
     
-    <div id="reg-sec" class="section">
-        <div class="header-title">Registro de Membresía</div>
-        <div class="glass-panel" style="max-width: 700px;">
-            <div class="form-grid">
-                <div class="field" style="grid-column: span 2;">
-                    <label>Nombre del Cliente</label>
-                    <input type="text" id="in-nombre" placeholder="NOMBRE COMPLETO">
-                </div>
-                <div class="field">
-                    <label>Plan</label>
-                    <select id="in-plan" onchange="updatePrice(); calcDates();">
+    <div id="sec-reg" class="section" style="display: block;">
+        <div class="glass-panel">
+            <h3 style="font-family:'Orbitron'; color:var(--primary); margin-top:0;">REGISTRO VIP</h3>
+            <div class="group"><label>Nombre</label><input type="text" id="v-nom" placeholder="NOMBRE COMPLETO"></div>
+            <div class="form-row">
+                <div class="group"><label>Plan</label>
+                    <select id="v-plan" onchange="autoFinan(); calcVence();">
                         <option value="SEMANAL">SEMANAL ($150)</option>
                         <option value="MENSUAL">MENSUAL ($380)</option>
                     </select>
                 </div>
-                <div class="field">
-                    <label>Inicia el día</label>
-                    <input type="date" id="in-inicio" onchange="calcDates()">
-                </div>
-                <div class="field">
-                    <label>Monto Recibido (Abono)</label>
-                    <input type="number" id="in-pago" onkeyup="calcDeuda()" value="150">
-                </div>
-                <div class="field">
-                    <label>Método de Pago</label>
-                    <select id="in-metodo">
-                        <option value="EFECTIVO">EFECTIVO</option>
-                        <option value="TRANSFERENCIA">TRANSFERENCIA</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Resta (Deuda)</label>
-                    <input type="text" id="in-resta" readonly style="color:var(--pastel-red); font-weight:bold;">
-                </div>
-                <div class="field">
-                    <label>Vence el día</label>
-                    <input type="date" id="in-vence" readonly>
-                </div>
-                <button class="btn-action" onclick="saveData()">REGISTRAR E IMPRIMIR</button>
+                <div class="group"><label>Inicio</label><input type="date" id="v-ini" onchange="calcVence()"></div>
             </div>
+            <div class="form-row">
+                <div class="group"><label>Pagó ($)</label><input type="number" id="v-pag" onkeyup="calcFinan()"></div>
+                <div class="group"><label>Método</label><select id="v-met"><option>EFECTIVO</option><option>TRANSFERENCIA</option></select></div>
+            </div>
+            <div class="form-row">
+                <div class="group"><label>Deuda</label><input type="text" id="v-res" readonly style="color:var(--primary)"></div>
+                <div class="group"><label>Vence</label><input type="date" id="v-ven" readonly></div>
+            </div>
+            <button class="btn-vip" onclick="saveData()">GUARDAR Y TICKET</button>
         </div>
     </div>
 
-    <div id="list-sec" class="section" style="display:none;">
-        <div class="header-title">Panel de Socios</div>
-        <div class="stats-row">
-            <div class="stat-card"><p>Total</p><h3 id="count-total">0</h3></div>
-            <div class="stat-card"><p>Vigentes</p><h3 id="count-v" style="color:var(--pastel-green)">0</h3></div>
-            <div class="stat-card"><p>Deudores</p><h3 id="count-d" style="color:var(--pastel-orange)">0</h3></div>
+    <div id="sec-soc" class="section">
+        <div class="stats-grid">
+            <div class="stat-box"><h4>TOTAL</h4><h2 id="st-t">0</h2></div>
+            <div class="stat-box"><h4>VIG</h4><h2 id="st-v" style="color:var(--success)">0</h2></div>
+            <div class="stat-box"><h4>DEU</h4><h2 id="st-d" style="color:var(--gold)">0</h2></div>
+            <div class="stat-box"><h4>VEN</h4><h2 id="st-x" style="color:var(--primary)">0</h2></div>
         </div>
-        <div class="glass-panel">
-            <input type="text" id="search" onkeyup="renderTable()" placeholder="🔍 BUSCAR SOCIO..." style="width:100%; margin-bottom:20px; padding:12px; background:#000; border:1px solid #333; color:white;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Estado</th>
-                        <th>Deuda</th>
-                        <th>Vence</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body"></tbody>
-            </table>
-        </div>
+        <input type="text" id="v-bus" onkeyup="renderTable()" placeholder="🔍 BUSCAR..." style="width:100%; margin-bottom:15px; padding:12px; background:#111; border:1px solid #333; color:#fff; border-radius:10px;">
+        <div class="table-container"><table id="v-tabla"></table></div>
     </div>
 
-    <div id="caja-sec" class="section" style="display:none;">
-        <div class="header-title">Caja e Ingresos</div>
-        <div class="stats-row">
-            <div class="stat-card"><p>Efectivo</p><h3 id="cj-e" style="color:var(--pastel-green)">$0</h3></div>
-            <div class="stat-card"><p>Transferencias</p><h3 id="cj-t" style="color:var(--pastel-blue)">$0</h3></div>
+    <div id="sec-caj" class="section">
+        <div class="stats-grid" style="grid-template-columns: 1fr 1fr !important;">
+            <div class="stat-box"><h4>EFECTIVO</h4><h2 id="cj-e" style="color:var(--success)">$0</h2></div>
+            <div class="stat-box"><h4>TRANSF.</h4><h2 id="cj-t" style="color:var(--info)">$0</h2></div>
         </div>
-        <div class="glass-panel">
-            <table>
-                <thead>
-                    <tr><th>Fecha</th><th>Socio</th><th>Método</th><th>Monto</th></tr>
-                </thead>
-                <tbody id="caja-body"></tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
-
-<div id="modalFicha" class="modal" onclick="closeFicha()">
-    <div class="ficha" onclick="event.stopPropagation()">
-        <h2 id="f-nom"></h2>
-        <p id="f-plan" style="color:var(--accent-red); font-weight:bold;"></p>
-        <hr border="0" style="border-top:1px solid #333; margin:20px 0;">
-        <div style="text-align:left; font-size:14px;">
-            <p>Vencimiento: <b id="f-ven"></b></p>
-            <p>Último Pago: <span id="f-pag"></span></p>
-            <p>Método: <span id="f-met"></span></p>
-            <p style="font-size:18px;">DEUDA: <b id="f-deuda" style="color:var(--pastel-red)"></b></p>
-        </div>
-        <button class="btn-action" onclick="closeFicha()">CERRAR</button>
+        <div class="table-container"><table><thead><tr><th>FECHA</th><th>SOCIO</th><th>MONTO</th></tr></thead><tbody id="v-caja"></tbody></table></div>
     </div>
 </div>
 
-<div id="ticket-print">
-    <h3>SMG CENTER</h3>
-    <p>RECIBO DE PAGO</p>
-    <hr>
-    <div style="text-align:left;">
-        Socio: <b id="t-nom"></b><br>
-        Plan: <span id="t-plan"></span><br>
-        Fecha: <span id="t-fec"></span><br>
-        Pagó: <b id="t-pag"></b> (<span id="t-met"></span>)<br>
-        Deuda: <span id="t-res"></span>
-    </div>
-    <hr>
-    <h4>PRÓX. VENCIMIENTO: <span id="t-ven"></span></h4>
-    <p>¡ENTRENA CON PASIÓN!</p>
-</div>
+<div id="modalFicha" class="modal" onclick="this.style.display='none'"><div class="ficha-vip" id="ficha-cont"></div></div>
+
+<div id="print-zone"></div>
 
 <script>
-    let socios = JSON.parse(localStorage.getItem('smg_v5_socios')) || [];
-    let ingresos = JSON.parse(localStorage.getItem('smg_v5_caja')) || [];
+    let db = JSON.parse(localStorage.getItem('smg_v10')) || [];
+    let caja = JSON.parse(localStorage.getItem('smg_caja10')) || [];
 
-    function showSection(id) {
+    function nav(id, el) {
         document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
         document.getElementById(id).style.display = 'block';
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        if(id==='list-sec') renderTable();
-        if(id==='caja-sec') renderCaja();
+        document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+        el.classList.add('active');
+        if(id==='sec-soc') renderTable();
+        if(id==='sec-caj') renderCaja();
     }
 
-    function updatePrice() {
-        const p = document.getElementById('in-plan').value;
-        document.getElementById('in-pago').value = (p === 'SEMANAL' ? 150 : 380);
-        calcDeuda();
+    function autoFinan() {
+        const p = document.getElementById('v-plan').value;
+        document.getElementById('v-pag').value = (p === 'SEMANAL' ? 150 : 380);
+        calcFinan();
     }
 
-    function calcDeuda() {
-        const plan = document.getElementById('in-plan').value;
-        const total = (plan === 'SEMANAL' ? 150 : 380);
-        const pago = parseFloat(document.getElementById('in-pago').value) || 0;
-        document.getElementById('in-resta').value = "$" + (total - pago);
+    function calcFinan() {
+        const p = document.getElementById('v-plan').value;
+        const total = (p === 'SEMANAL' ? 150 : 380);
+        const pago = parseFloat(document.getElementById('v-pag').value) || 0;
+        document.getElementById('v-res').value = "$" + (total - pago).toFixed(2);
     }
 
-    function calcDates() {
-        const ini = document.getElementById('in-inicio').value;
+    function calcVence() {
+        const ini = document.getElementById('v-ini').value;
         if(!ini) return;
         let d = new Date(ini + 'T00:00:00');
-        const plan = document.getElementById('in-plan').value;
-        d.setDate(d.getDate() + (plan === 'SEMANAL' ? 7 : 30));
+        const p = document.getElementById('v-plan').value;
+        d.setDate(d.getDate() + (p === 'SEMANAL' ? 7 : 30));
         d.setDate(d.getDate() - 1);
-        document.getElementById('in-vence').value = d.toISOString().split('T')[0];
+        document.getElementById('v-ven').value = d.toISOString().split('T')[0];
     }
 
     function saveData() {
-        const n = document.getElementById('in-nombre').value.toUpperCase();
-        const p = document.getElementById('in-pago').value;
-        const r = document.getElementById('in-resta').value;
-        const v = document.getElementById('in-vence').value;
-        const m = document.getElementById('in-metodo').value;
-        const pl = document.getElementById('in-plan').value;
-        const ini = document.getElementById('in-inicio').value;
+        const n = document.getElementById('v-nom').value.toUpperCase();
+        const p = document.getElementById('v-pag').value;
+        const v = document.getElementById('v-ven').value;
+        if(!n || !v) return alert("LLENA LOS DATOS");
 
-        if(!n || !ini || !p) return alert("Faltan datos");
+        const obj = { nombre: n, pago: p, resta: document.getElementById('v-res').value, vence: v, metodo: document.getElementById('v-met').value, plan: document.getElementById('v-plan').value, inicio: document.getElementById('v-ini').value };
+        db.push(obj);
+        caja.unshift({ fecha: new Date().toLocaleDateString(), socio: n, monto: p, metodo: obj.metodo });
 
-        const obj = { nombre: n, pago: p, resta: r, vence: v, metodo: m, plan: pl, inicio: ini };
-        socios.push(obj);
-        ingresos.unshift({ fecha: new Date().toLocaleDateString(), socio: n, monto: p, metodo: m });
-
-        localStorage.setItem('smg_v5_socios', JSON.stringify(socios));
-        localStorage.setItem('smg_v5_caja', JSON.stringify(ingresos));
-
-        printRecibo(obj);
-        showSection('list-sec');
+        localStorage.setItem('smg_v10', JSON.stringify(db));
+        localStorage.setItem('smg_caja10', JSON.stringify(caja));
+        
+        // Simular Ticket
+        document.getElementById('print-zone').innerHTML = `<h2>SMG CENTER</h2><p>SOCIO: ${n}</p><p>PAGÓ: $${p}</p><p>VENCE: ${v}</p>`;
+        window.print();
+        nav('sec-soc', document.querySelectorAll('.menu-item')[1]);
     }
 
     function renderTable() {
-        const body = document.getElementById('table-body');
-        const filter = document.getElementById('search').value.toUpperCase();
+        const bus = document.getElementById('v-bus').value.toUpperCase();
         const hoy = new Date().toISOString().split('T')[0];
-        body.innerHTML = '';
+        let t=0, v=0, d=0, x=0, h = '<thead><tr><th>NOMBRE</th><th>ESTADO</th><th>DEUDA</th><th>ACCIÓN</th></tr></thead><tbody>';
         
-        let t=0, v=0, d=0;
-        socios.forEach((s, i) => {
-            if(s.nombre.includes(filter)) {
+        db.forEach((s, i) => {
+            if(s.nombre.includes(bus)) {
                 const isV = s.vence >= hoy;
-                const hasD = s.resta !== "$0";
-                t++; if(isV) v++; if(hasD) d++;
-
-                body.innerHTML += `<tr>
-                    <td style="color:white; font-weight:bold; cursor:pointer" onclick="verFicha(${i})">${s.nombre}</td>
-                    <td><span class="badge ${isV?'bg-vigente':'bg-vencido'}">${isV?'VIGENTE':'VENCIDO'}</span></td>
-                    <td style="color:${hasD?'#f1c40f':'#666'}">${hasD ? 'DEBE: '+s.resta : 'PAGADO'}</td>
-                    <td>${s.vence}</td>
-                    <td><button class="btn-delete" onclick="borrar(${i})">🗑️</button></td>
-                </tr>`;
+                const deud = s.resta !== "$0.00";
+                t++; isV ? v++ : x++; if(deud) d++;
+                h += `<tr><td onclick="verFicha(${i})" style="font-weight:bold">${s.nombre}</td>
+                    <td><span class="badge ${isV?'status-v':'status-x'}">${isV?'VIG':'VEN'}</span></td>
+                    <td style="color:${deud?'var(--gold)':'#555'}">${s.resta}</td>
+                    <td><button onclick="borrar(${i})" style="background:none; border:none; color:red">🗑️</button></td></tr>`;
             }
         });
-        document.getElementById('count-total').innerText = t;
-        document.getElementById('count-v').innerText = v;
-        document.getElementById('count-d').innerText = d;
+        document.getElementById('v-tabla').innerHTML = h + '</tbody>';
+        document.getElementById('st-t').innerText = t; document.getElementById('st-v').innerText = v;
+        document.getElementById('st-d').innerText = d; document.getElementById('st-x').innerText = x;
     }
 
     function verFicha(i) {
-        const s = socios[i];
-        document.getElementById('f-nom').innerText = s.nombre;
-        document.getElementById('f-plan').innerText = s.plan;
-        document.getElementById('f-ven').innerText = s.vence;
-        document.getElementById('f-pag').innerText = "$" + s.pago;
-        document.getElementById('f-met').innerText = s.metodo;
-        document.getElementById('f-deuda').innerText = s.resta;
+        const s = db[i];
+        document.getElementById('ficha-cont').innerHTML = `<h2 style="font-family:'Orbitron'">${s.nombre}</h2><hr><p>PLAN: ${s.plan}</p><p>VENCE: ${s.vence}</p><p>DEUDA: ${s.resta}</p><p>METODO: ${s.metodo}</p>`;
         document.getElementById('modalFicha').style.display = 'flex';
     }
 
-    function closeFicha() { document.getElementById('modalFicha').style.display = 'none'; }
-
     function renderCaja() {
         let e=0, t=0;
-        document.getElementById('caja-body').innerHTML = ingresos.map(i => {
-            if(i.metodo==='EFECTIVO') e += parseFloat(i.monto); else t += parseFloat(i.monto);
-            return `<tr><td>${i.fecha}</td><td>${i.socio}</td><td>${i.metodo}</td><td>$${i.monto}</td></tr>`;
+        document.getElementById('v-caja').innerHTML = caja.map(c => {
+            if(c.metodo==='EFECTIVO') e += parseFloat(c.monto); else t += parseFloat(c.monto);
+            return `<tr><td>${c.fecha}</td><td>${c.socio}</td><td>$${c.monto}</td></tr>`;
         }).join('');
-        document.getElementById('cj-e').innerText = "$" + e;
-        document.getElementById('cj-t').innerText = "$" + t;
+        document.getElementById('cj-e').innerText = "$" + e.toFixed(2);
+        document.getElementById('cj-t').innerText = "$" + t.toFixed(2);
     }
 
-    function borrar(i) { if(confirm("¿Eliminar socio?")) { socios.splice(i,1); localStorage.setItem('smg_v5_socios', JSON.stringify(socios)); renderTable(); } }
+    function borrar(i) { if(confirm("ELIMINAR?")) { db.splice(i,1); localStorage.setItem('smg_v10', JSON.stringify(db)); renderTable(); } }
 
-    function printRecibo(s) {
-        document.getElementById('t-nom').innerText = s.nombre;
-        document.getElementById('t-plan').innerText = s.plan;
-        document.getElementById('t-fec').innerText = new Date().toLocaleDateString();
-        document.getElementById('t-pag').innerText = "$" + s.pago;
-        document.getElementById('t-met').innerText = s.metodo;
-        document.getElementById('t-res').innerText = s.resta;
-        document.getElementById('t-ven').innerText = s.vence;
-        window.print();
-    }
-
-    // Inicializar
-    document.getElementById('in-inicio').valueAsDate = new Date();
-    updatePrice();
-    calcDates();
+    document.getElementById('v-ini').valueAsDate = new Date();
+    autoFinan();
 </script>
+
 </body>
 </html>
+
